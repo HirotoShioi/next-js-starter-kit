@@ -8,9 +8,13 @@ const notoSansJp = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
 });
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+type PageProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: PageProps) {
   return (
-    <html>
+    <html lang="en">
       <body
         className={cn(
           "min-h-screen bg-background antialiased",
