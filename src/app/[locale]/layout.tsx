@@ -4,7 +4,12 @@ import { NextIntlClientProvider } from "next-intl";
 import { Noto_Sans_JP } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Sign in to your account",
+};
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
   variable: "--font-noto-sans-jp",
