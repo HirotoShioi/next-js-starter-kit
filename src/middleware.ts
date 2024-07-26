@@ -8,8 +8,8 @@ export default createMiddleware({
   // Used when no locale matches
   defaultLocale: 'ja'
 });
- 
+
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(ja|en)/:path*']
-};
+  // Skip all paths that should not be internationalized
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
+}

@@ -9,13 +9,17 @@ const notoSansJp = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
 });
 
-export default async function LocaleLayout({
+export type LayoutProps = {
+  children: React.ReactNode;
+  params: {
+    locale: string;
+  };
+};
+
+export default async function Layout({
   children,
   params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+}: LayoutProps) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
   let messages;
