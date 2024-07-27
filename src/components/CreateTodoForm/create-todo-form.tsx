@@ -11,9 +11,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function CreateTodoForm() {
   const formSchema = z.object({
@@ -35,8 +35,8 @@ export default function CreateTodoForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="py-4">
-        <div className="grid grid-cols-3 gap-4">
-          <div className="col-span-2">
+        <div className="grid grid-cols-4 gap-4">
+          <div className="col-span-3">
             <FormField
               control={form.control}
               name="title"
@@ -49,7 +49,7 @@ export default function CreateTodoForm() {
                   {/* <FormDescription>
                     Enter the title of the todo item
                   </FormDescription> */}
-                  <FormMessage />
+                  {/* <FormMessage /> */}
                 </FormItem>
               )}
             />
