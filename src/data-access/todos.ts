@@ -14,19 +14,17 @@ export async function getTodoById(id: number): Promise<Todo> {
   return TodoSchema.parse(res);
 }
 
-export async function createTodo(todo: {
-  title: string;
-  completed: boolean;
-}): Promise<Todo> {
+export async function createTodo(todo: { title: string }): Promise<void> {
   const response = await fetch("https://jsonplaceholder.typicode.com/todos", {
     method: "POST",
-    body: JSON.stringify(todo),
+    body: JSON.stringify({
+      title: todo.title,
+      completed: false,
+    }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   });
-  const res = await response.json();
-  return TodoSchema.parse(res);
 }
 
 export async function updateTodo(id: number): Promise<Todo> {

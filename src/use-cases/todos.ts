@@ -15,8 +15,8 @@ export async function getTodoById(id: number) {
   return getTodoByIdFromDataAccess(id);
 }
 
-export async function createTodo(todo: { title: string; completed: boolean }) {
-  return createTodoInDataAccess(todo);
+export async function createTodo(todo: { title: string }) {
+  return;
 }
 
 export async function updateTodo(id: number) {
