@@ -1,7 +1,7 @@
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Auth from "@/components/Auth";
+import Providers from "@/providers/providers";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -21,8 +21,7 @@ export default function RootLayout({ children }: PageProps) {
           notoSansJp.variable,
         )}
       >
-        <Auth />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
