@@ -5,10 +5,12 @@ import { Noto_Sans_JP } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import { Metadata } from "next";
+import Header from "@/components/Header/header";
+import Footer from "@/components/Footer/footer";
 
 export const metadata: Metadata = {
-  title: "Sign In",
-  description: "Sign in to your account",
+  title: "My App",
+  description: "My app description",
 };
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -37,7 +39,11 @@ export default async function Layout({
         )}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <div className="flex flex-col w-full">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

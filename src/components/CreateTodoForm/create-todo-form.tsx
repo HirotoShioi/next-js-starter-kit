@@ -6,10 +6,8 @@ import { createTodo } from "@/use-cases/todos";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -32,10 +30,14 @@ export default function CreateTodoForm() {
     });
     form.reset();
   }
+  const isSubmitDisabled = () => {
+    const modifiedFields = Object.keys(form.formState.dirtyFields);
+    return modifiedFields.length === 0 || !form.formState.isValid;
+  };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="py-4">
-        <div className="grid grid-cols-4 gap-4">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="grid sm:grid-cols-4 gap-4">
           <div className="col-span-3">
             <FormField
               control={form.control}
@@ -55,10 +57,15 @@ export default function CreateTodoForm() {
             />
           </div>
           <div className="flex flex-col justify-center col-span-1">
-            <Button type="submit" className="px-2 py-1">
-              Create Todo
+            <Button disabled={isSubmitDisabled()} type="submit">
+              Submit
             </Button>
           </div>
+        </div>
+        <div>
+          {form.formState.errors.title && (
+            <FormMessage>{form.formState.errors.title.message}</FormMessage>
+          )}
         </div>
       </form>
     </Form>

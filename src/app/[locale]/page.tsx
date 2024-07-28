@@ -2,6 +2,8 @@ import CreateTodoForm from "@/components/CreateTodoForm/create-todo-form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Todo } from "@/data-access/models/todo.model";
+import { cn } from "@/lib/utils";
+import { pageWrapperStyles } from "@/styles/common";
 import { getTodos } from "@/use-cases/todos";
 import { getTranslations } from "next-intl/server";
 
@@ -24,10 +26,10 @@ export default async function Page() {
   const t = await getTranslations();
   const todos = await getTodos();
   return (
-    <div className="container">
-      <h1 className="text-2xl pt-4">{t("todos")}</h1>
+    <div className={cn(pageWrapperStyles, "max-w-3xl space-y-8")}>
+      <h1 className="text-2xl">{t("todos")}</h1>
       <CreateTodoForm />
-      <ul className="">
+      <ul>
         {todos.map((todo) => (
           <TodoItem {...todo} key={todo.id} />
         ))}

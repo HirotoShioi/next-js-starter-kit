@@ -8,6 +8,7 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import { translations } from "@aws-amplify/ui-react";
 import { I18n } from "aws-amplify/utils";
+import { pageWrapperStyles } from "@/styles/common";
 export const dynamic = "force-dynamic";
 
 type PageProps = {
@@ -59,8 +60,10 @@ export default function Page({ params: { locale } }: PageProps) {
     },
   };
   return (
-    <ThemeProvider theme={theme}>
-      <Authenticator />
-    </ThemeProvider>
+    <div className={pageWrapperStyles}>
+      <ThemeProvider theme={theme}>
+        <Authenticator />
+      </ThemeProvider>
+    </div>
   );
 }
