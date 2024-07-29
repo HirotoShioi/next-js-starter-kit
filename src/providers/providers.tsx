@@ -1,5 +1,5 @@
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
-import Auth from "./AuthProvider";
+import AuthProvider from "./auth-provider";
 
 export default function Providers({
   children,
@@ -10,10 +10,11 @@ export default function Providers({
 }) {
   return (
     <>
-      <Auth />
-      <NextIntlClientProvider messages={messages}>
-        {children}
-      </NextIntlClientProvider>
+      <AuthProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </AuthProvider>
     </>
   );
 }

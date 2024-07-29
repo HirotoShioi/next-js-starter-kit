@@ -4,11 +4,14 @@ import {
   ThemeProvider,
   Theme,
   useTheme,
+  useAuthenticator,
 } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { translations } from "@aws-amplify/ui-react";
 import { I18n } from "aws-amplify/utils";
 import { pageWrapperStyles } from "@/styles/common";
+import { useEffect } from "react";
+import { useRouter } from "@/lib/i18n";
 export const dynamic = "force-dynamic";
 
 type PageProps = {
@@ -18,6 +21,14 @@ type PageProps = {
 };
 
 export default function Page({ params: { locale } }: PageProps) {
+  const { user } = useAuthenticator((c) => [c.user]);
+  const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  })
+
   const { tokens } = useTheme();
   I18n.putVocabularies(translations);
   I18n.setLanguage(locale);

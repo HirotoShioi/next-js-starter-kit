@@ -7,18 +7,7 @@ export const authConfig: ResourcesConfig = {
         process.env.NEXT_PUBLIC_COGNITO_USER_POOL_WEB_CLIENT_ID!,
       userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
       loginWith: {
-        oauth: {
-          domain: process.env.NEXT_PUBLIC_COGNITO_DOMAIN!,
-          scopes: [
-            'email',
-            'openid',
-            'profile',
-            'aws.cognito.signin.user.admin',
-          ],
-          redirectSignIn: [process.env.NEXT_PUBLIC_COGNITO_REDIRECT_SIGN_IN!],
-          redirectSignOut: [process.env.NEXT_PUBLIC_COGNITO_REDIRECT_SIGN_OUT!],
-          responseType: 'code',
-        },
+        email: true,
       },
       passwordFormat: {
         minLength: 8,
