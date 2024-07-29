@@ -7,6 +7,7 @@ import { getMessages } from "next-intl/server";
 import { Metadata } from "next";
 import Header from "@/components/Header/header";
 import Footer from "@/components/Footer/footer";
+import Providers from "@/providers/providers";
 
 export const metadata: Metadata = {
   title: "My App",
@@ -38,13 +39,13 @@ export default async function Layout({
           notoSansJp.variable,
         )}
       >
-        <NextIntlClientProvider messages={messages}>
+        <Providers messages={messages}>
           <div className="flex flex-col w-full">
             <Header />
             {children}
             <Footer />
           </div>
-        </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );

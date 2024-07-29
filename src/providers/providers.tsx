@@ -1,10 +1,19 @@
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import Auth from "./AuthProvider";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+  children,
+  messages,
+}: {
+  children: React.ReactNode;
+  messages: AbstractIntlMessages;
+}) {
   return (
     <>
       <Auth />
-      {children}
+      <NextIntlClientProvider messages={messages}>
+        {children}
+      </NextIntlClientProvider>
     </>
   );
 }
