@@ -4,14 +4,16 @@ import AuthProvider from "./auth-provider";
 export default function Providers({
   children,
   messages,
+  locale,
 }: {
   children: React.ReactNode;
   messages: AbstractIntlMessages;
+  locale?: string;
 }) {
   return (
     <>
       <AuthProvider>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
         </NextIntlClientProvider>
       </AuthProvider>
