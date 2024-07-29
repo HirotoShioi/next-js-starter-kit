@@ -12,6 +12,7 @@ import { I18n } from "aws-amplify/utils";
 import { pageWrapperStyles } from "@/styles/common";
 import { useEffect } from "react";
 import { useRouter } from "@/lib/i18n";
+
 export const dynamic = "force-dynamic";
 
 type PageProps = {
@@ -25,7 +26,7 @@ export default function Page({ params: { locale } }: PageProps) {
   const router = useRouter();
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push("/todos");
     }
   })
 
@@ -47,7 +48,7 @@ export default function Page({ params: { locale } }: PageProps) {
         },
         button: {
           primary: {
-            backgroundColor: tokens.colors.neutral["100"],
+            backgroundColor: tokens.colors.blue["60"],
           },
           link: {
             color: tokens.colors.blue["80"],
@@ -60,9 +61,9 @@ export default function Page({ params: { locale } }: PageProps) {
         },
         tabs: {
           item: {
-            color: tokens.colors.neutral["80"],
+            color: tokens.colors.blue["60"],
             _active: {
-              borderColor: tokens.colors.neutral["100"],
+              borderColor: tokens.colors.blue["100"],
               color: tokens.colors.blue["100"],
             },
           },

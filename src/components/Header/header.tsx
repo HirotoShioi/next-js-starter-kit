@@ -1,21 +1,66 @@
-import { Link } from "@/lib/i18n";
+"use client";
+import { Link, useRouter } from "@/lib/i18n";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
-import { HeaderMenuItem } from "../HeaderMenuItem/menu-item";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { signOut } from 'aws-amplify/auth';
+
+export function HeaderMenuItem({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  const router = useRouter();
+  return (
+    <DropdownMenuItem
+      onClick={() => router.push(href)}
+      className="cursor-pointer"
+    >
+      {children}
+    </DropdownMenuItem>
+  );
+}
+export function SignOutItem() {
+  const router = useRouter();
+  const { user } = useAuthenticator((c) => [c.user]);
+  if (!user) {
+    return null;
+  }
+  return (
+    <DropdownMenuItem
+      onClick={() => signOut().then(() => router.push('/'))}
+      className="cursor-pointer"
+    >
+      Sign Out
+    </DropdownMenuItem>
+  );
+}
+
 function HeaderActions() {
+  const { user } = useAuthenticator((c) => [c.user]);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Menu size={24} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <HeaderMenuItem href="/">Todos</HeaderMenuItem>
-        <HeaderMenuItem href="/chat">Chat</HeaderMenuItem>
+        {!!user ? (
+          <>
+            <HeaderMenuItem href="/todos">Todos</HeaderMenuItem>
+            <HeaderMenuItem href="/chat">Chat</HeaderMenuItem>
+            <SignOutItem />
+          </>
+        ) : (
+          <HeaderMenuItem href="/sign-in">Sign In</HeaderMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
