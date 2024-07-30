@@ -39,6 +39,6 @@ export const fetchIdToken = async (): Promise<JWT | null> =>
     nextServerContext: { cookies },
     operation: async (contextSpec) => {
       const user = await amplifyFetchAuthSession(contextSpec).catch(() => null);
-      return user?.tokens?.accessToken || null;
+      return user?.tokens?.idToken || null;
     },
   });

@@ -1,6 +1,5 @@
 import { locales } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { NextIntlClientProvider } from "next-intl";
 import { Noto_Sans_JP } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
@@ -42,7 +41,7 @@ export default async function Layout({
         <Providers messages={messages}>
           <div className="flex flex-col w-full">
             <Header />
-            {children}
+            <main className="min-h-screen">{children}</main>
             <Footer />
           </div>
         </Providers>

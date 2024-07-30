@@ -7,8 +7,7 @@ import {
 } from "@/data-access/todos";
 
 export async function getTodos() {
-  const todos = await getTodosFromDataAccess();
-  return todos.slice(0, 5);
+  return getTodosFromDataAccess();
 }
 
 export async function getTodoById(id: number) {
