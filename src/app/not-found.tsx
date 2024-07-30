@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { pageWrapperStyles } from "@/styles/common";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n";
+
 export default function NotFound() {
   const lang =
     (window.navigator.languages || [])[0] || window.navigator.language;

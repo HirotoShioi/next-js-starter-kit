@@ -16,7 +16,7 @@ export async function getTodoById(id: number) {
 }
 
 export async function createTodo(todo: { title: string }) {
-  return;
+  return createTodoInDataAccess(todo);
 }
 
 export async function updateTodo(id: number) {
