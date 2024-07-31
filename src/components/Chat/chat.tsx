@@ -8,24 +8,21 @@ import { fetchAuthSession } from "aws-amplify/auth";
 
 function UserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-start gap-4">
-      <div className="p-2 bg-slate-300 rounded-full">
-        <User size={28} />
+    <div className="flex items-start justify-end">
+      <div className="bg-muted px-4 py-2 max-w-[75%] rounded-3xl">
+        {children}
       </div>
-      <div className="bg-muted rounded-lg p-4 max-w-[75%]">{children}</div>
     </div>
   );
 }
 
 function AiMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-start gap-4 justify-end">
-      <div className="bg-primary text-primary-foreground rounded-lg p-4 max-w-[75%]">
-        {children}
-      </div>
+    <div className="flex items-start gap-1 justify-start">
       <div className="p-2 bg-slate-300 rounded-full">
         <BrainCircuit size={28} />
       </div>
+      <div className="rounded-lg p-2 max-w">{children}</div>
     </div>
   );
 }
@@ -46,7 +43,7 @@ export default function Chat() {
   };
   return (
     <>
-      <div className="flex-1  h-[83vh] overflow-y-auto p-6 space-y-4">
+      <div className="flex-1  h-[83vh] overflow-y-auto p-6 space-y-3">
         {messages.map((message, index) => {
           if (message.role === "user") {
             return <UserMessage key={index}>{message.content}</UserMessage>;
