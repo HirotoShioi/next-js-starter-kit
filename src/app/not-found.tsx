@@ -10,22 +10,24 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n";
 
 export default function NotFound() {
-  const lang =
-    (window.navigator.languages || [])[0] || window.navigator.language;
-  const message = lang.startsWith("ja") ? jaMessage : enMessage;
+  const lang = () => {
+    if (typeof window === "undefined") {
+      return "en";
+    }
+    return (window.navigator.languages || [])[0] || window.navigator.language;
+  };
+  const message = lang().startsWith("ja") ? jaMessage : enMessage;
   return (
     <html lang="en">
       <body>
-        <Providers messages={message} locale={lang}>
+        <Providers messages={message} locale={lang()}>
           <Header />
           <div className={cn(pageWrapperStyles, "max-w-3xl space-y-8")}>
             <div className="flex flex-col items-center justify-center h-full gap-5">
-            <h1 className="text-2xl">Page Not Found</h1>
-            <Button asChild>
-              <Link href="/">
-                Go home
-              </Link>
-            </Button>
+              <h1 className="text-2xl">Page Not Found</h1>
+              <Button asChild>
+                <Link href="/">Go home</Link>
+              </Button>
             </div>
           </div>
           <Footer />

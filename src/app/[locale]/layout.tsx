@@ -41,8 +41,7 @@ export default async function Layout({
         <Providers messages={messages}>
           <div className="flex flex-col w-full">
             <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <main>{children}</main>
           </div>
         </Providers>
       </body>
